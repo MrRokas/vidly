@@ -1,4 +1,4 @@
-import { genres, getGenres } from "./fakeGenreService";
+import { genres } from "./fakeGenreService";
 
 const movies = [
   {
