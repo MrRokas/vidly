@@ -25,7 +25,7 @@ const Pagination = (props) => {
           </li>
         ))}
         <li className="page-item">
-          <a className="page-link" onClick={() => onNext(currentPage + 1)}>
+          <a className="page-link " onClick={() => onNext(currentPage + 1)}>
             Next
           </a>
         </li>
