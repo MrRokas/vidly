@@ -1,10 +1,9 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSortUp } from "@fortawesome/free-solid-svg-icons";
+import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 
 class TableHeader extends Component {
-  //columns: array
-  //sortColumn: object
-  //onSort: function
-
   raiseSort = (path) => {
     const sortColumn = { ...this.props.sortColumn };
     if (sortColumn.path === path) {
@@ -15,6 +14,14 @@ class TableHeader extends Component {
     }
     this.props.onSort(sortColumn);
   };
+  renderSortIcon = (column) => {
+    const { sortColumn } = this.props;
+    if (column.path !== sortColumn.path) return null;
+    if (sortColumn.order === "asc")
+      return <FontAwesomeIcon className="ps-1" icon={faSortUp} />;
+    return <FontAwesomeIcon className="ps-1" icon={faSortDown} />;
+  };
+
   render() {
     const { columns } = this.props;
 
@@ -23,11 +30,12 @@ class TableHeader extends Component {
         <tr>
           {columns.map((column) => (
             <th
+              className="clickable"
               key={column.path || column.key}
               onClick={() => this.raiseSort(column.path)}
               scope="col"
             >
-              {column.label}
+              {column.label} {this.renderSortIcon(column)}
             </th>
           ))}
         </tr>

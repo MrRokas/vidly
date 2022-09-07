@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import LikeButton from "./common/like";
-import TableHeader from "./common/tableHeader";
+import Table from "./common/table";
 
 class moviesTable extends Component {
   render() {
-    const { movies, onDelete, onLike, sortColumn, onSort } = this.props;
+    const { movies, sortColumn, onSort } = this.props;
 
     const columns = [
       {
@@ -23,40 +23,36 @@ class moviesTable extends Component {
         path: "dailyRentalRate",
         label: "Rate",
       },
-      { key: "like" },
-      { key: "delete" },
+      {
+        key: "like",
+        content: (movie) => (
+          <LikeButton
+            liked={movie.liked}
+            onLike={() => this.props.onLike(movie)}
+          />
+        ),
+      },
+      {
+        key: "delete",
+        content: (movie) => (
+          <button
+            type="button"
+            className="btn btn-sm btn-danger"
+            onClick={() => this.props.onDelete(movie)}
+          >
+            delete
+          </button>
+        ),
+      },
     ];
 
     return (
-      <table className="table table-hover">
-        <TableHeader
-          columns={columns}
-          sortColumn={sortColumn}
-          onSort={onSort}
-        />
-        <tbody>
-          {movies.map((movie) => (
-            <tr key={movie._id}>
-              <td>{movie.title}</td>
-              <td>{movie.genre.name}</td>
-              <td>{movie.numberInStock}</td>
-              <td>{movie.dailyRentalRate}</td>
-              <td>
-                <LikeButton liked={movie.liked} onLike={() => onLike(movie)} />
-              </td>
-              <td>
-                <button
-                  type="button"
-                  className="btn btn-sm btn-danger"
-                  onClick={() => onDelete(movie)}
-                >
-                  delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <Table
+        columns={columns}
+        data={movies}
+        sortColumn={sortColumn}
+        onSort={onSort}
+      />
     );
   }
 }
