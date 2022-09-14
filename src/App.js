@@ -6,6 +6,7 @@ import Customers from "./components/customers";
 import Rentals from "./components/rentals";
 import Movies from "./components/movies";
 import ErrorPage from "./components/common/errorPage";
+import MovieForm from "./components/common/movieForm";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Movies />} />
           <Route path="movies" element={<Movies />} />
+          <Route path=":id" element={<MovieForm />} />
           <Route path="customers" element={<Customers />} />
           <Route path="rentals" element={<Rentals />} />
           <Route path="*" element={<ErrorPage />} />

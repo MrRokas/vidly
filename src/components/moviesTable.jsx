@@ -12,7 +12,7 @@ class moviesTable extends Component {
         path: "title",
         label: "Title",
         content: (movie) => (
-          <Link className="link-decoration" to={`/movies/${movie._id}`}>
+          <Link className="link-decoration" to={`/${movie._id}`}>
             {movie.title}
           </Link>
         ),
