@@ -1,3 +1,11 @@
 .clickable {
   cursor: pointer;
 }
+
+.link-decoration {
+  text-decoration: none;
+}
+
+.link-decoration:hover {
+  text-decoration: underline;
+}

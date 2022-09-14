@@ -8,6 +8,7 @@ import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
 import MoviesTable from "./moviesTable";
 import _ from "lodash";
+import { Outlet } from "react-router-dom";
 class Movies extends Component {
   state = {
     movies: [],
@@ -67,14 +68,8 @@ class Movies extends Component {
   };
 
   render() {
-    const {
-      movies: allMovies,
-      pageSize,
-      currentPage,
-      genres,
-      selectedGenre,
-      sortColumn,
-    } = this.state;
+    const { pageSize, currentPage, genres, selectedGenre, sortColumn } =
+      this.state;
 
     const { totalCount, data: movies } = this.getPagedData();
 
@@ -108,6 +103,7 @@ class Movies extends Component {
             />
           </div>
         </div>
+        <Outlet />
       </>
     );
   }

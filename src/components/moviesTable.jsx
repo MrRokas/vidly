@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import LikeButton from "./common/like";
 import Table from "./common/table";
 
@@ -10,6 +11,11 @@ class moviesTable extends Component {
       {
         path: "title",
         label: "Title",
+        content: (movie) => (
+          <Link className="link-decoration" to={`/movies/${movie._id}`}>
+            {movie.title}
+          </Link>
+        ),
       },
       {
         path: "genre.name",
