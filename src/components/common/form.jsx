@@ -1,15 +1,11 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import Joi from "joi";
+import Input from "./input";
 class Form extends Component {
   state = {
     data: {},
     errors: {},
   };
-
-  schema = Joi.object({
-    username: Joi.string().required().label("Username"),
-    password: Joi.string().required().label("Password"),
-  });
 
   validateProperty = ({ name, value }) => {
     const obj = { [name]: value };
@@ -51,6 +47,28 @@ class Form extends Component {
 
     this.setState({ data, errors });
   };
+
+  renderButton(label) {
+    return (
+      <button disabled={this.validate()} className="btn btn-primary">
+        {label}
+      </button>
+    );
+  }
+
+  renderInput(name, label, type = "text") {
+    const { data, errors } = this.state;
+    return (
+      <Input
+        value={data[name]}
+        label={label}
+        onChange={this.handleChange}
+        name={name}
+        error={errors[name]}
+        type={type}
+      />
+    );
+  }
 }
 
 export default Form;

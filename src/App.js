@@ -1,13 +1,13 @@
 import "./App.css";
 
-import NavBar from "./components/common/navBar";
+import NavBar from "./components/navBar";
 import { Routes, Route } from "react-router-dom";
 import Customers from "./components/customers";
 import Rentals from "./components/rentals";
 import Movies from "./components/movies";
-import ErrorPage from "./components/common/errorPage";
-import MovieForm from "./components/common/movieForm";
-import LoginForm from "./components/common/loginForm";
+import ErrorPage from "./components/errorPage";
+import MovieForm from "./components/movieForm";
+import LoginForm from "./components/loginForm";
 
 function App() {
   return (
