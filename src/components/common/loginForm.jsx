@@ -3,24 +3,12 @@ import Joi from "joi";
 import Input from "./input";
 
 class LoginForm extends Component {
-  state = { account: { username: "", password: "" }, errors: {} };
+  state = { data: { username: "", password: "" }, errors: {} };
 
   schema = Joi.object({
     username: Joi.string().required().label("Username"),
     password: Joi.string().required().label("Password"),
   });
-
-  handleChange = ({ currentTarget: input }) => {
-    const errors = { ...this.state.errors };
-    const errorMessage = this.validateProperty(input);
-    if (errorMessage) errors[input.name] = errorMessage;
-    else delete errors[input.name];
-
-    const account = { ...this.state.account };
-    account[input.name] = input.value;
-
-    this.setState({ account, errors });
-  };
 
   validateProperty = ({ name, value }) => {
     const obj = { [name]: value };
@@ -31,7 +19,7 @@ class LoginForm extends Component {
 
   validate = () => {
     const options = { abortEarly: false };
-    const { error } = this.schema.validate(this.state.account, options);
+    const { error } = this.schema.validate(this.state.data, options);
     if (!error) return null;
 
     const errors = {};
@@ -46,14 +34,31 @@ class LoginForm extends Component {
 
     const errors = this.validate();
     this.setState({ errors: errors || {} });
-
     if (errors) return;
 
+    // Call the server
+    this.doSubmit();
+  };
+
+  doSubmit = () => {
+    // Call the server
     console.log("Submitted");
   };
 
+  handleChange = ({ currentTarget: input }) => {
+    const errors = { ...this.state.errors };
+    const errorMessage = this.validateProperty(input);
+    if (errorMessage) errors[input.name] = errorMessage;
+    else delete errors[input.name];
+
+    const data = { ...this.state.data };
+    data[input.name] = input.value;
+
+    this.setState({ data, errors });
+  };
+
   render() {
-    const { account, errors } = this.state;
+    const { data: account, errors } = this.state;
 
     return (
       <div className="container w-50">
