@@ -18,6 +18,7 @@ class LoginForm extends Component {
 
     const account = { ...this.state.account };
     account[input.name] = input.value;
+
     this.setState({ account, errors });
   };
 
@@ -72,7 +73,9 @@ class LoginForm extends Component {
             name={"password"}
             error={errors.password}
           />
-          <button className="btn btn-primary">Login</button>
+          <button disabled={this.validate()} className="btn btn-primary">
+            Login
+          </button>
         </form>
       </div>
     );
