@@ -8,6 +8,7 @@ import Movies from "./components/movies";
 import ErrorPage from "./components/errorPage";
 import MovieForm from "./components/movieForm";
 import LoginForm from "./components/loginForm";
+import RegisterForm from "./components/registerForm";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path=":id" element={<MovieForm />} />
           <Route path="customers" element={<Customers />} />
           <Route path="rentals" element={<Rentals />} />
+          <Route path="register" element={<RegisterForm />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>
